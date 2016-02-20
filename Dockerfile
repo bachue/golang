@@ -1,17 +1,12 @@
 FROM buildpack-deps:wily-scm
 
-RUN echo 'deb http://mirrors.aliyun.com/ubuntu/ wily main restricted universe multiverse'            > /etc/apt/sources.list && \
-    echo 'deb http://mirrors.aliyun.com/ubuntu/ wily-security main restricted universe multiverse'  >> /etc/apt/sources.list && \
-    echo 'deb http://mirrors.aliyun.com/ubuntu/ wily-updates main restricted universe multiverse'   >> /etc/apt/sources.list && \
-    echo 'deb http://mirrors.aliyun.com/ubuntu/ wily-proposed main restricted universe multiverse'  >> /etc/apt/sources.list && \
-    echo 'deb http://mirrors.aliyun.com/ubuntu/ wily-backports main restricted universe multiverse' >> /etc/apt/sources.list
-
 # gcc for cgo
 RUN apt-get update && apt-get install -y --no-install-recommends \
         g++ \
         gcc \
         libc6-dev \
         make \
+        vim \
     && rm -rf /var/lib/apt/lists/*
 
 ENV GOLANG_VERSION 1.6
